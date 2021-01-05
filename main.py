@@ -4,6 +4,8 @@ import re
 
 import logging
 
+# minor change 2
+
 logging.basicConfig(filename='test.log', level=logging.DEBUG)
 logger = logging.getLogger('netmiko')
 
