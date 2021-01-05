@@ -2,11 +2,10 @@ from netmiko import ConnectHandler, NetmikoAuthenticationException, NetmikoTimeo
 from paramiko.ssh_exception import AuthenticationException
 import re
 
-# Logging section ##############
-# import logging
-#
-# logging.basicConfig(filename='test.log', level=logging.DEBUG)
-# logger = logging.getLogger('netmiko')
+import logging
+
+logging.basicConfig(filename='test.log', level=logging.DEBUG)
+logger = logging.getLogger('netmiko')
 
 
 device1 = {
