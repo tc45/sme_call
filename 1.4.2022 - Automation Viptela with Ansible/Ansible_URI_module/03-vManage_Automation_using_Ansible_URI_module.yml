@@ -66,7 +66,7 @@
     - name: GET TUNNEL STATS
       uri:
         # ************** UPDATE BEFORE CLASS **************
-        url: "https://{{ inventory_hostname }}/dataservicer/device/tunnel/statistics?deviceId=172.27.0.12"
+        url: "https://{{ inventory_hostname }}/dataservice/device/tunnel/statistics?deviceId=172.27.0.12"
         method: GET
         headers:
           Cookie: "{{ vmanage_cookie }}"
@@ -86,7 +86,7 @@
 #
 #    - name: GET TUNNEL STATS WITH LOOP
 #      uri:
-#        url: "https://{{ inventory_hostname }}/dataservicer/device/tunnel/statistics?deviceId={{ item }}"
+#        url: "https://{{ inventory_hostname }}/dataservice/device/tunnel/statistics?deviceId={{ item }}"
 #        method: GET
 #        headers:
 #          Cookie: "{{ vmanage_cookie }}"
