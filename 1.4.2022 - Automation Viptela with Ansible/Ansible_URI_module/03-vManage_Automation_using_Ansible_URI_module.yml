@@ -74,21 +74,21 @@
       register: device_list
       tags:
         - all
-      vars:
-        devicelist: device_list.json.data
+#      vars:
+#        devicelist: device_list.json.data
 
     - name: PRINT LIST OF DEVICES
       debug:
-        var: devicelist
+        var: device_list.json.data
       tags:
         - all
 
-    - name: PRINT LIST OF DEVICES
-      debug:
-        msg: "{{  item.hostname  }}"
-      loop: devicelist
-      tags:
-        - all
+#    - name: PRINT LIST OF DEVICES
+#      debug:
+#        msg: "{{  item.hostname  }}"
+#      loop: devicelist
+#      tags:
+#        - all
 
     - name: PAUSE TO VIEW THE DEVICES
       pause:
