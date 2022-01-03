@@ -104,6 +104,6 @@
 
     - name: DEBUG TUNNEL RESULTS
       debug:
-        var: tunnel_stats.results[0]
+        var: tunnel_stats.results[0].changed
       tags:
         - tunnel
