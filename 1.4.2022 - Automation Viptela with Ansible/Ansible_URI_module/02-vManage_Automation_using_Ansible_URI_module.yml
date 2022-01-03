@@ -16,7 +16,7 @@
         return_content: yes
         validate_certs: no
 #  STEP 2 - Store the response
-        register: login_data
+      register: login_data
 
 #  STEP 3 - Print the cookie from the response
     - name: PRINT SESSION COOKIE
@@ -43,7 +43,7 @@
 # Step 1 - Use REST GET to retrieve reboot history and store in variable
     - name: GET REBOOT HISTORY DETAILS
       uri:
-        url: "https://{{ inventory_hostname }}/dataservice/device/reboothistory/details
+        url: "https://{{ inventory_hostname }}/dataservice/device/reboothistory/details"
         method: GET
         headers:
           Cookie: "{{ vmanage_cookie }}"
