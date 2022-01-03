@@ -74,10 +74,14 @@
       register: device_list
       tags:
         - all
-
-    - name: WRITE VARS
       vars:
         devicelist: device_list.json.data
+
+    - name: PRINT LIST OF DEVICES
+      debug:
+        var: device_list
+      tags:
+        - all
 
     - name: PRINT LIST OF DEVICES
       debug:
