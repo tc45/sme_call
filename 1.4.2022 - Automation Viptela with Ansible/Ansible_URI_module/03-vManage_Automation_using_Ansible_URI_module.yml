@@ -77,7 +77,8 @@
 
     - name: PRINT LIST OF DEVICES
       debug:
-        var: device_list
+        msg: "{{  item.hostname  }}"
+      loop: device_list.json.data
       tags:
         - all
 
