@@ -15,27 +15,27 @@
         body_format: form-urlencoded
         return_content: yes
         validate_certs: no
-#  STEP 2 - Store the response
-#        register: login_data
-#
-#  STEP 3 - Print the cookie from the response
-#    - name: PRINT SESSION COOKIE
-#      debug:
-#        var: login_data.set_cookie
-#
-# STEP 4 - Assign the cookie to a variable
-#    - name: ASSIGN THE SESSION COOKIE TO A VARIABLE
-#      set_fact:
-#        vmanage_cookie: "{{ login_data.set_cookie }}"
-#
-#####################
-#
-# STEP 5 - View the cookie and pause for viewing
-#    - name: VIEW THE COOKIE
-#      debug:
-#        var: vmanage_cookie
+  STEP 2 - Store the response
+        register: login_data
 
-#    - name: PAUSE TO VIEW THE COOKIE
-#      pause:
-#        seconds: 3
-#
+  STEP 3 - Print the cookie from the response
+    - name: PRINT SESSION COOKIE
+      debug:
+        var: login_data.set_cookie
+
+ STEP 4 - Assign the cookie to a variable
+    - name: ASSIGN THE SESSION COOKIE TO A VARIABLE
+      set_fact:
+        vmanage_cookie: "{{ login_data.set_cookie }}"
+
+####################
+
+ STEP 5 - View the cookie and pause for viewing
+    - name: VIEW THE COOKIE
+      debug:
+        var: vmanage_cookie
+
+    - name: PAUSE TO VIEW THE COOKIE
+      pause:
+        seconds: 3
+

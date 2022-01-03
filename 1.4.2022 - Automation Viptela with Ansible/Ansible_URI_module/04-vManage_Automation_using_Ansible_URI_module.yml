@@ -66,7 +66,7 @@
     - name: GET TUNNEL STATS
       uri:
         # ************** UPDATE BEFORE CLASS **************
-        url: "https://{{ inventory_hostname }}/dataservice/device/tunnel/statistics?deviceId=172.27.0.12"
+        url: "https://{{ inventory_hostname }}/dataservice/device/tunnel/statistics?deviceId=10.10.1.11"
         method: GET
         headers:
           Cookie: "{{ vmanage_cookie }}"

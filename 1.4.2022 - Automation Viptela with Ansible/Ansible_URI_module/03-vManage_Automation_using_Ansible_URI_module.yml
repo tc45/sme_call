@@ -62,6 +62,25 @@
 
 ######## START LAB 3 HERE #######
 
+# Step 0 - Get list of devices
+    - name: GET LIST OF DEVICES
+      uri:
+        url: "https://{{ inventory_hostname }}/dataservice/device"
+        method: GET
+        headers:
+          Cookie: "{{ vmanage_cookie }}"
+        return_content: yes
+        validate_certs: no
+      register: device_list
+      tags:
+        - all
+
+    - name: PRINT LIST OF DEVICES
+      debug:
+        var: device_list
+      tags:
+        - all
+
 # Step 1 - Get tunnel statistics for one device
     - name: GET TUNNEL STATS
       uri:
