@@ -82,6 +82,10 @@
         var: device_list.json.data
       tags:
         - all
+        -
+    - name: SAVE JSON DATA AS VARIABLE
+      set_fact:
+        jsondata: "{{ device_list.json.data | from_json }}"
 
 #    - name: PRINT LIST OF DEVICES
 #      debug:
@@ -106,6 +110,8 @@
       register: tunnel_stats
       tags:
         - tunnel
+
+
 
     - name: DEBUG TUNNEL STATS
       debug:
