@@ -83,27 +83,31 @@
         - tunnel
 
 ## Step 2 - Add loop for multiple devices
-#
-#    - name: GET TUNNEL STATS WITH LOOP
-#      uri:
-#        url: "https://{{ inventory_hostname }}/dataservice/device/tunnel/statistics?deviceId={{ item }}"
-#        method: GET
-#        headers:
-#          Cookie: "{{ vmanage_cookie }}"
-#        return_content: yes
-#        validate_certs: no
-#      # ************** UPDATE BEFORE CLASS **************
-#      loop: ['172.27.0.12', '172.27.0.13']
-#      register: tunnel_stats
-#      tags:
-#        - tunnel
-#
-#    - name: DEBUG TUNNEL STATS
-#      debug:
-#        var: tunnel_stats.keys()
-#      tags:
-#        - tunnel
-#
+
+    - name: GET TUNNEL STATS WITH LOOP
+      uri:
+        url: "https://{{ inventory_hostname }}/dataservice/device/tunnel/statistics?deviceId={{ item }}"
+        method: GET
+        headers:
+          Cookie: "{{ vmanage_cookie }}"
+        return_content: yes
+        validate_certs: no
+      loop: ['10.10.1.11', '10.10.1.13']
+      register: tunnel_stats
+      tags:
+        - tunnel
+
+    - name: DEBUG TUNNEL STATS
+      debug:
+        var: tunnel_stats.keys()
+      tags:
+        - tunnel
+
+    - name: DEBUG TUNNEL JSON DATA
+      debug:
+        var: tunnel_stats.results[0].json.data
+      tags:
+        - tunnel
 
 
 
@@ -117,7 +121,7 @@
           Cookie: "{{ vmanage_cookie }}"
         return_content: yes
         validate_certs: no
-      loop: ['172.27.0.12', '172.27.0.13']
+      loop: ['10.10.1.11', '10.10.1.13']
       register: status
       tags:
         - device

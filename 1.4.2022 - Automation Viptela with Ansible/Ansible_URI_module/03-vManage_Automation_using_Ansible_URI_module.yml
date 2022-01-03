@@ -102,8 +102,8 @@
       tags:
         - tunnel
 
-    - name: DEBUG TUNNEL RESULTS
+    - name: DEBUG TUNNEL JSON DATA
       debug:
-        var: tunnel_stats.results[0]
+        var: tunnel_stats.results[0].json.data
       tags:
         - tunnel
