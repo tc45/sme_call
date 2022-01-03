@@ -1,0 +1,106 @@
+# Step 1 - Authenticate using variables stored in inventory file
+- name: OBTAIN SESSION COOKIE WITH URI MODULE
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: GET COOKIE WITH POST
+      uri:
+        url: "https://{{ inventory_hostname }}/j_security_check"
+        method: POST
+        body:
+          j_username: "{{ username }}"
+          j_password: "{{ password }}"
+        body_format: form-urlencoded
+        return_content: yes
+        validate_certs: no
+#  STEP 2 - Store the response
+        register: login_data
+
+#  STEP 3 - Print the cookie from the response
+    - name: PRINT SESSION COOKIE
+      debug:
+        var: login_data.set_cookie
+
+# STEP 4 - Assign the cookie to a variable
+    - name: ASSIGN THE SESSION COOKIE TO A VARIABLE
+      set_fact:
+        vmanage_cookie: "{{ login_data.set_cookie }}"
+
+
+# STEP 5 - View the cookie and pause for viewing
+    - name: VIEW THE COOKIE
+      debug:
+        var: vmanage_cookie
+
+    - name: PAUSE TO VIEW THE COOKIE
+      pause:
+        seconds: 3
+
+######## START LAB 2 HERE #######
+
+# Step 1 - Use REST GET to retrieve reboot history and store in variable
+    - name: GET REBOOT HISTORY DETAILS
+      uri:
+        url: "https://{{ inventory_hostname }}/dataservice/device/reboothistory/details"
+        method: GET
+        headers:
+          Cookie: "{{ vmanage_cookie }}"
+        return_content: yes
+        validate_certs: no
+      register: reboot_history
+      tags:
+        - reboot
+
+# Step 2 - Print reboot history
+    - name: PRINT REBOOOT HISTORY
+      debug:
+        var: reboot_history
+      tags:
+        - debug
+
+######## START LAB 3 HERE #######
+
+# Step 1 - Get tunnel statistics for one device
+    - name: GET TUNNEL STATS
+      uri:
+        # ************** UPDATE BEFORE CLASS **************
+        url: "https://{{ inventory_hostname }}/dataservicer/device/tunnel/statistics?deviceId=172.27.0.12"
+        method: GET
+        headers:
+          Cookie: "{{ vmanage_cookie }}"
+        return_content: yes
+        validate_certs: no
+      register: tunnel_stats
+      tags:
+        - tunnel
+
+    - name: DEBUG TUNNEL STATS
+      debug:
+        var: tunnel_stats.keys()
+      tags:
+        - tunnel
+
+## Step 2 - Add loop for multiple devices
+#
+#    - name: GET TUNNEL STATS WITH LOOP
+#      uri:
+#        url: "https://{{ inventory_hostname }}/dataservicer/device/tunnel/statistics?deviceId={{ item }}"
+#        method: GET
+#        headers:
+#          Cookie: "{{ vmanage_cookie }}"
+#        return_content: yes
+#        validate_certs: no
+#      # ************** UPDATE BEFORE CLASS **************
+#      loop: ['172.27.0.12', '172.27.0.13']
+#      register: tunnel_stats
+#      tags:
+#        - tunnel
+#
+#    - name: DEBUG TUNNEL STATS
+#      debug:
+#        var: tunnel_stats.keys()
+#      tags:
+#        - tunnel
+#

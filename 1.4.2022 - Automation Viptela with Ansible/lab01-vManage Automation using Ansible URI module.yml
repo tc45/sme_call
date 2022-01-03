@@ -1,0 +1,41 @@
+# Step 1 - Authenticate using variables stored in inventory file
+- name: OBTAIN SESSION COOKIE WITH URI MODULE
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+    - name: GET COOKIE WITH POST
+      uri:
+        url: "https://{{ inventory_hostname }}/j_security_check"
+        method: POST
+        body:
+          j_username: "{{ username }}"
+          j_password: "{{ password }}"
+        body_format: form-urlencoded
+        return_content: yes
+        validate_certs: no
+#  STEP 2 - Store the response
+#        register: login_data
+#
+#  STEP 3 - Print the cookie from the response
+#    - name: PRINT SESSION COOKIE
+#      debug:
+#        var: login_data.set_cookie
+#
+# STEP 4 - Assign the cookie to a variable
+#    - name: ASSIGN THE SESSION COOKIE TO A VARIABLE
+#      set_fact:
+#        vmanage_cookie: "{{ login_data.set_cookie }}"
+#
+#####################
+#
+# STEP 5 - View the cookie and pause for viewing
+#    - name: VIEW THE COOKIE
+#      debug:
+#        var: vmanage_cookie
+
+#    - name: PAUSE TO VIEW THE COOKIE
+#      pause:
+#        seconds: 3
+#

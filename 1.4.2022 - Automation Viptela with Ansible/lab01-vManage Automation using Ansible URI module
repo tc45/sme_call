@@ -1,0 +1,4 @@
+- name: OBTAIN SESSION COOKIE WITH URI MODULE
+  hosts: all
+  connection: local
+  gather_facts: no
