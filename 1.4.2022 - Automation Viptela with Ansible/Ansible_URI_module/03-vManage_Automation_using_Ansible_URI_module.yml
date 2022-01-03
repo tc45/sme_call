@@ -75,10 +75,14 @@
       tags:
         - all
 
+    - name: WRITE VARS
+      vars:
+        devicelist: device_list.json.data
+
     - name: PRINT LIST OF DEVICES
       debug:
         msg: "{{  item.hostname  }}"
-      loop: device_list.json.data
+      loop: devicelist
       tags:
         - all
 
