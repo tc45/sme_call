@@ -78,9 +78,8 @@
         devicelist: device_list.json.data
 
     - name: PRINT LIST OF DEVICES
-      devicelist: device_list.json.data
       debug:
-        var: devicelist
+        var: device_list.json.data
       tags:
         - all
 
