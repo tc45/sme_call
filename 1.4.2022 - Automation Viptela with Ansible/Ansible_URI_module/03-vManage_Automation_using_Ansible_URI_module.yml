@@ -81,6 +81,10 @@
       tags:
         - all
 
+    - name: PAUSE TO VIEW THE DEVICES
+      pause:
+        seconds: 3
+
 # Step 1 - Get tunnel statistics for one device
     - name: GET TUNNEL STATS
       uri:
