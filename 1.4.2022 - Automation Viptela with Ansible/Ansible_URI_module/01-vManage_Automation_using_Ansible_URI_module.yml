@@ -23,14 +23,14 @@
       debug:
         var: login_data.set_cookie
 
- STEP 4 - Assign the cookie to a variable
+# STEP 4 - Assign the cookie to a variable
     - name: ASSIGN THE SESSION COOKIE TO A VARIABLE
       set_fact:
         vmanage_cookie: "{{ login_data.set_cookie }}"
 
 ####################
 
- STEP 5 - View the cookie and pause for viewing
+# STEP 5 - View the cookie and pause for viewing
     - name: VIEW THE COOKIE
       debug:
         var: vmanage_cookie
