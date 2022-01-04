@@ -16,7 +16,7 @@
         return_content: yes
         validate_certs: no
   STEP 2 - Store the response
-        register: login_data
+    register: login_data
 
   STEP 3 - Print the cookie from the response
     - name: PRINT SESSION COOKIE
