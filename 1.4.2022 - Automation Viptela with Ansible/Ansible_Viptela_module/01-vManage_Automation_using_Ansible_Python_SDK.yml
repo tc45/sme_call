@@ -56,12 +56,12 @@
       debug: var=device_facts
 
 # Step 3 - GET POLICY FACTS USING SDK
-- name: Check policy configurations
-  hosts: all
-  connection: local
-  roles:
-    - ansible-viptela
-  tasks:
+#- name: Check policy configurations
+#  hosts: all
+#  connection: local
+#  roles:
+#    - ansible-viptela
+#  tasks:
     - name: GET POLICY LISTS
       vmanage_policy_list_facts:
         host: "{{ inventory_hostname }}"
