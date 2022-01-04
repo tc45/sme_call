@@ -74,25 +74,12 @@
       register: device_list
       tags:
         - all
-#      vars:
-#        devicelist: device_list.json.data
 
     - name: PRINT LIST OF DEVICES
       debug:
         var: device_list.json.data
       tags:
         - all
-
-#    - name: SAVE JSON DATA AS VARIABLE
-#      set_fact:
-#        jsondata: "{{ device_list.json.data | from_json }}"
-
-#    - name: PRINT LIST OF DEVICES
-#      debug:
-#        msg: "{{  item.hostname  }}"
-#      loop: devicelist
-#      tags:
-#        - all
 
     - name: PAUSE TO VIEW THE DEVICES
       pause:
