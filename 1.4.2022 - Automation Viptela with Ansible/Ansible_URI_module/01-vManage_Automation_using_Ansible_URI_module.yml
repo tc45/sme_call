@@ -18,7 +18,7 @@
 #  STEP 2 - Store the response
       register: login_data
 
-  STEP 3 - Print the cookie from the response
+#  STEP 3 - Print the cookie from the response
     - name: PRINT SESSION COOKIE
       debug:
         var: login_data.set_cookie
