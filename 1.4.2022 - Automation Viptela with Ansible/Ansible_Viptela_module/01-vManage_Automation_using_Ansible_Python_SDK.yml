@@ -1,6 +1,6 @@
 ---
 # Login to vmanage and get cookie.  Store in variable
-- name: Check routing table
+- name: GET COOKIE
   hosts: all
   connection: local
   tasks:
