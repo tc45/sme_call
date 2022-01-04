@@ -10,11 +10,12 @@
         url: "https://{{ inventory_hostname }}/j_security_check"
         method: POST
         body:
+          j_username: "{{ username }}"
           j_password: "{{ password }}"
         body_format: form-urlencoded
         return_content: yes
         validate_certs: no
-  STEP 2 - Store the response
+#  STEP 2 - Store the response
       register: login_data
 
   STEP 3 - Print the cookie from the response
