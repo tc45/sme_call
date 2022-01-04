@@ -37,6 +37,24 @@
 #      debug:
 #        msg: "Routing table has {{ routing_data.json.data | length }} routes"
 
+# GET DEVICE TEMPLATE FACTS USING SDK
+- name: Get Device Template Facts
+  hosts: all
+  connection: local
+  roles:
+    - ansible-viptela
+  tasks:
+    - name: GET POLICY LISTS
+      vmanage_policy_list_facts:
+        host: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+      factory_default: yes
+      register: device_facts
+
+    - name: PRINT DEVICE FACTS
+      debug: var=device_facts
+
 # Step 3 - GET POLICY FACTS USING SDK
 - name: Check policy configurations
   hosts: all
