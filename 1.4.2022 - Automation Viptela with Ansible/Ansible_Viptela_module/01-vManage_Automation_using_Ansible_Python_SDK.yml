@@ -38,20 +38,20 @@
 #        msg: "Routing table has {{ routing_data.json.data | length }} routes"
 
 # Step 3 - GET POLICY FACTS USING SDK
-    - name: Check policy configurations
-      hosts: all
-      connection: local
-      roles:
-        - ansible-viptela
-      tasks:
-        - name: GET POLICY LISTS
-          vmanage_policy_list_facts:
-            host: "{{ inventory_hostname }}"
-            user: "{{ username }}"
-            password: "{{ password }}"
-          no_log: yes
-          register: list_facts
+- name: Check policy configurations
+  hosts: all
+  connection: local
+  roles:
+    - ansible-viptela
+  tasks:
+    - name: GET POLICY LISTS
+      vmanage_policy_list_facts:
+        host: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+      no_log: yes
+      register: list_facts
 
-        - name: Print Policy Lists
-          debug: var=list_facts.policy_lists
+    - name: Print Policy Lists
+      debug: var=list_facts.policy_lists
           
