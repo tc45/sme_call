@@ -83,9 +83,9 @@
       tags:
         - all
 
-    - name: SAVE JSON DATA AS VARIABLE
-      set_fact:
-        jsondata: "{{ device_list.json.data | from_json }}"
+#    - name: SAVE JSON DATA AS VARIABLE
+#      set_fact:
+#        jsondata: "{{ device_list.json.data | from_json }}"
 
 #    - name: PRINT LIST OF DEVICES
 #      debug:
