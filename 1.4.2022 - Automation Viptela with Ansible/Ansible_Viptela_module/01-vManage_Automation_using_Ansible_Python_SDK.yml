@@ -1,19 +1,19 @@
 ---
 # Login to vmanage and get cookie.  Store in variable
-#- name: GET COOKIE
-#  hosts: all
-#  connection: local
-#  tasks:
-#    - name: OBTAIN SESSION COOKIE
-#      uri:
-#        url: https://{{ inventory_hostname }}:8443/j_security_check
-#        method: POST
-#        body:
-#          j_username: "{{ username }}"
-#          j_password: "{{ password }}"
-#        body_format: form-urlencoded
-#        validate_certs: no
-#      register: login_data
+- name: GET COOKIE
+  hosts: all
+  connection: local
+  tasks:
+    - name: OBTAIN SESSION COOKIE
+      uri:
+        url: https://{{ inventory_hostname }}:8443/j_security_check
+        method: POST
+        body:
+          j_username: "{{ username }}"
+          j_password: "{{ password }}"
+        body_format: form-urlencoded
+        validate_certs: no
+      register: login_data
 #
 ## Step 1 - GET ROUTING TABLE USING URI METHOD
 #    - name: Check routing table with URI module
