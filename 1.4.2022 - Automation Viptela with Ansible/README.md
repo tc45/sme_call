@@ -1,1 +1,0 @@
-Automating Viptela with Ansible

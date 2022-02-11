@@ -1,0 +1,14 @@
+[
+  {
+    "device-model": "vmanage",
+    "system-ip": "10.1.1.1"
+  },
+  {
+    "device-model": "vbond",
+    "system-ip": "10.1.1.2"
+  },
+  {
+    "device-model": "vedge",
+    "system-ip": "10.1.1.3"
+  }
+]

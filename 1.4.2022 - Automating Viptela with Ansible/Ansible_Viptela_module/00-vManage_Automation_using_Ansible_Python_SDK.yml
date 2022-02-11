@@ -1,0 +1,45 @@
+---
+## In this example, obtaining a cookie is part of the underlying process, so the playbook can focus on the task at hand.
+## Using this approach the play jump immediately into using the Ansible module to access the data.  The first example for
+## GET DEVICE FACTS uses the vmanage_device_facts Ansible module to do the heavy lifting of determining what URL to talk to and
+## handling authentication.
+##
+##
+## To view available modules, look at the Github documentation or look at file names in /roles/ansible-viptela/modules/viptela
+## Module Usage can be found at the following link.
+## https://github.com/CiscoDevNet/python-viptela/tree/master/ansible
+##
+# Step 1 - GET POLICY FACTS USING SDK
+- name: Check policy configurations
+  hosts: all
+  connection: local
+# Step 2 - Define role to be used (module).  This is just the name of the folder under the /roles/ directory associated
+  roles:
+    - ansible-viptela
+  tasks:
+# Step 3 - Get Device Facts using module vmanage_device_facts
+    - name: GET DEVICE FACTS
+      vmanage_device_facts:
+        host: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+      no_log: yes
+      register: device_facts
+
+    - name: Print Device Facts - Controllers
+      debug: var=device_facts.controllers
+
+    - name: Print Device Facts - Edges
+      debug: var=device_facts.vedges
+
+# Step 4 - Get Policy Lists using module vmanage_policy_list_facts
+    - name: GET POLICY LISTS
+      vmanage_policy_list_facts:
+        host: "{{ inventory_hostname }}"
+        user: "{{ username }}"
+        password: "{{ password }}"
+      no_log: yes
+      register: list_facts
+
+    - name: Print Policy Lists
+      debug: var=list_facts.policy_lists
