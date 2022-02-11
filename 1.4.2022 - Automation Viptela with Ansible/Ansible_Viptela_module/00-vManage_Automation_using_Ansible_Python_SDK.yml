@@ -49,8 +49,16 @@
         host: "{{ inventory_hostname }}"
         user: "{{ username }}"
         password: "{{ password }}"
-        no_log: yes
-        register: device_facts
+      no_log: yes
+      register: device_facts
+
+    - name: Print Device Facts - Controllers
+      debug: var=device_facts.controllers
+
+    - name: Print Device Facts - Edges
+      debug: var=device_facts.vedges
+
+
 
     - name: GET POLICY LISTS
       vmanage_policy_list_facts:
@@ -62,4 +70,3 @@
 
     - name: Print Policy Lists
       debug: var=list_facts.policy_lists
-          
