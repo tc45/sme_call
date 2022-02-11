@@ -58,8 +58,6 @@
     - name: Print Device Facts - Edges
       debug: var=device_facts.vedges
 
-
-
     - name: GET POLICY LISTS
       vmanage_policy_list_facts:
         host: "{{ inventory_hostname }}"
