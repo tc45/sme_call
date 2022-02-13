@@ -7,7 +7,10 @@ Reserve a sandbox using the following link, connect to the VPN, SSH into the Dev
 2. Upon activiation, follow emailed instructions to login to VPN
 3. SSH into the DevBox to perform automation task (Terminal should start in a python virtual environment)
 4. Clone the respository using 'git clone https://github.com/tc45/sme_call'
-5. cd into the directory 'cd sme_call'
+    ```
+    git clone https://github.com/tc45/sme_call
+    ```
+6. cd into the directory 'cd sme_call'
     ```
     cd sme_call
     ```
