@@ -13,6 +13,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 host = '10.10.20.90'
 username = 'admin'
 password = 'C1sco12345'
+vmanage_port = 8443
 
 
 def save_to_text(filename, payload):
@@ -118,11 +119,11 @@ def main():
     vmanage_username = username
     vmanage_password = password
 
-    session = Authentication(host=vmanage_host, user=vmanage_username, password=vmanage_password, port=8443).login()
+    session = Authentication(host=vmanage_host, user=vmanage_username, password=vmanage_password, port=vmanage_port).login()
     #print(session.cookies._cookies[vmanage_host]["/"]["JSESSIONID"])
 
     # Instantiate new device object to use the Device library
-    device = Device(session, vmanage_host)
+    device = Device(session, vmanage_host, port=vmanage_port)
     # Request list of all vedge devices and store
     device_list = device.get_device_list("vedges")
     # Request list of all vedge devices and store
@@ -133,11 +134,11 @@ def main():
     list_controllers = print_device_table(controller_list)
 
     # Extract and print template data
-    template_data = TemplateData(session, vmanage_host)
+    template_data = TemplateData(session, vmanage_host, port=vmanage_port)
     exported_device_template_list = template_data.export_device_template_list()
     print_template_table(exported_device_template_list)
 
-    device_templates = DeviceTemplates(session, vmanage_host)
+    device_templates = DeviceTemplates(session, vmanage_host, port=vmanage_port)
     get_running_config(list_vedges, device_templates)
     get_running_config(list_controllers, device_templates)
 
